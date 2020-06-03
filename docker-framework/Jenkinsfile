@@ -31,16 +31,17 @@ node {
                           ]
                         }"""
 
-                rtServer.download (downloadSpec, buildInfo)
+                rtServer.download spec: downloadSpec
+                //rtServer.download (downloadSpec, buildInfo)
                 if (fileExists('jdk/jdk-8-linux-x64.tar.gz') && fileExists('tomcat/apache-tomcat-8.tar.gz')) {
                     println "Downloaded dependencies"
                 } else {
-                    println "Missing Dependencies either jdk or tomcat - see listing below:"
+                    println "Missing 1Dependencies either jdk or tomcat - see listing below:"
                     sh 'ls -d */*'
-                    throw new FileNotFoundException("Missing Dependencies")
+                    throw new FileNotFoundException("Missing 2Dependencies")
                 }
             } catch (Exception e) {
-                println "Caught exception during resolution.  Message ${e.message}"
+                println "Caught 3exception during resolution.  Message ${e.message}"
                 throw e
             }
         }
